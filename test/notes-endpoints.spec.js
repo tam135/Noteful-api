@@ -101,6 +101,7 @@ describe('Notes Endpoints', () => {
           .get('/api/note')
           .set('Authorization', `Bearer ${process.env.API_TOKEN}`)
           .expect(200, testNotes);
+          
       });
     });
 

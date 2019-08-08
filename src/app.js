@@ -14,11 +14,12 @@ const noteRouter = require('./note/note-router');
 const app = express();
 
 const morganOption = NODE_ENV === 'production' ? 'tiny' : 'common';
-
+if (!module.parent) {
 app.use(morgan(morganOption));
+}
 app.use(cors());
 app.use(helmet());
-//app.use(validateBearerToken);
+
 
 app.use('/api/folder', folderRouter);
 app.use('/api/note', noteRouter);
