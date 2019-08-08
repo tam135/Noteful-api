@@ -236,7 +236,7 @@ describe('Notes Endpoints', () => {
     beforeEach('insert testFolders', () => {
       return db.into('noteful_folder').insert(testFolders);
     });
-    // prettier-ignore
+    
     [('name', 'folder_id', 'content')].forEach(field => {
       const newNote = {
         name: 'test-name',
@@ -256,7 +256,7 @@ describe('Notes Endpoints', () => {
           });
       });
     });
-    // prettier-ignore
+  
     it('adds a new note to the store', () => {
       const newNote = {
         name: 'test-name',
@@ -324,7 +324,7 @@ describe('Notes Endpoints', () => {
             return db.into('noteful_note').insert(testNotes);
           });
       });
-      // prettier-ignore
+      
       it('responds with 204 and updates the note', () => {
         const idToUpdate = 2;
         const updateNote = {
@@ -348,7 +348,7 @@ describe('Notes Endpoints', () => {
               .expect(expectedNote)
           );
       });
-      // prettier-ignore
+     
       it(`responds with 400 when no required fields supplied`, () => {
         const idToUpdate = 2;
         return supertest(app)
@@ -367,12 +367,12 @@ describe('Notes Endpoints', () => {
         const updateNote = {
           name: 'updated note name',
         };
-        // prettier-ignore
+      
         const expectedNote = {
           ...testNotes[idToUpdate - 1],
           ...updateNote
         };
-        // prettier-ignore
+      
         return supertest(app)
           .patch(`/api/note/${idToUpdate}`)
           .set('Authorization', `Bearer ${process.env.API_TOKEN}`)

@@ -9,7 +9,7 @@ const jsonParser = express.json();
 const serializeNote = note => ({
   id: note.id,
   name: xss(note.name),
-  modified: note.modified,
+  modified: new Date(note.modified),
   folder_id: note.folder_id,
   content: xss(note.content),
 });
@@ -79,7 +79,7 @@ noteRouter
     if (numberOfValues === 0)
       return res.status(400).json({
         error: {
-          message: `Request body must content either 'name', 'folder_id' or 'content'`,
+          message: `Request body must content either 'name', 'folder_id', or 'content'`,
         },
       });
 
